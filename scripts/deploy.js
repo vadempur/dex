@@ -8,16 +8,35 @@ const { ethers } = require("hardhat");
 const hre = require("hardhat");
 
 async function main() {
+  console.log("prepare deployment \n")
    //Fetch ontract to deploy
    const Token = await ethers.getContractFactory('Token');
 
-   const token = await Token.deploy();
+   const Exchange = await ethers.getContractFactory('Exchange');
 
-   await token.deployed();
+   //fetch accounts
+   const accounts = await ethers.getSigners();
 
-    console.log(`Token Deployed to : ${token.address}`)
+   console.log(`Accounts fetched ${accounts[0].address}\n ${accounts[1].address}\n`)
 
-  
+
+  const dapp = await Token.deploy("Dapp university" ,"DAPP" ,"1000000");
+  await dapp.deployed();
+  console.log(`dapp Deployed to : ${dapp.address}`)
+
+  const mETH = await Token.deploy('mETH','mETH',"1000000");
+  await mETH.deployed();
+  console.log(`mETH Deployed to : ${mETH.address}`)
+
+  const mDAI = await Token.deploy('mDAI','mDAI',"1000000");
+  await mDAI.deployed();
+  console.log(`mDAI Deployed to : ${mDAI.address}`)
+
+  const exchange = await Exchange.deploy(accounts[1].address ,10);
+  await exchange.deployed();
+  console.log(`Exchange Deployed to : ${exchange.address}`)
+
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere
