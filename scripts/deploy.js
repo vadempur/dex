@@ -20,15 +20,15 @@ async function main() {
    console.log(`Accounts fetched ${accounts[0].address}\n ${accounts[1].address}\n`)
 
 
-  const dapp = await Token.deploy("Dapp university" ,"DAPP" ,"1000000");
+  const dapp = await Token.deploy("Dapp university" ,"Dapp" ,"10000000");
   await dapp.deployed();
   console.log(`dapp Deployed to : ${dapp.address}`)
 
-  const mETH = await Token.deploy('mETH','mETH',"1000000");
+  const mETH = await Token.deploy('mETH','mETH',"10000000");
   await mETH.deployed();
   console.log(`mETH Deployed to : ${mETH.address}`)
 
-  const mDAI = await Token.deploy('mDAI','mDAI',"1000000");
+  const mDAI = await Token.deploy('mDAI','mDAI',"10000000");
   await mDAI.deployed();
   console.log(`mDAI Deployed to : ${mDAI.address}`)
 

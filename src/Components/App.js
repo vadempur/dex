@@ -4,6 +4,8 @@ import '../App.css';
 import Navbar from './Navbar';
 import config from "../config.json"
 import { loadAccount, loadExchange, loadNetwork, loadProvider, loadTokens } from '../store/interactions'
+import Markets from './Markets';
+import Balance from './Balance';
 
 function App() {
 
@@ -53,9 +55,9 @@ function App() {
       <main className='exchange grid'>
         <section className='exchange__section--left grid'>
 
-          {/* Markets */}
+          <Markets/>
 
-          {/* Balance */}
+          <Balance/>
 
           {/* Order */}
 
