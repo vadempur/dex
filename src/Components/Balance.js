@@ -6,13 +6,16 @@ const Balance = () => {
     const dispatch = useDispatch()
 
     const account = useSelector(state=>state.provider.account);
+    const exchange = useSelector(state=>state.exchange.contract);
+    const tokens = useSelector(state=>state.tokens.contracts);
+
+   
+    const symbols = useSelector(state=>state.tokens.symbols)
+    const exchangeBalances = useSelector(state=> state.exchange.balances);
+
+    const tokenBalances = useSelector(state=>state.tokens.balances)
     const provider = useSelector(state=>state.provider.connection);
 
-    const exchange = useSelector(state=>state.exchange.contract);
-    const exchangeBalances = useSelector(state=> state.exchange.balances);
-    const tokens = useSelector(state=>state.tokens.contracts);
-    const symbols = useSelector(state=>state.tokens.symbols)
-    const tokenBalances = useSelector(state=>state.tokens.balances)
 
     const [token1TransferAmount, setToken1TransferAmount] = useState(0)
 
@@ -32,7 +35,7 @@ const Balance = () => {
  }
 
     useEffect(()=>{
-      if(exchange &&tokens[0]&& tokens[1]&& account)
+      if(exchange && tokens[0] && tokens[1]&& account)
       loadBalances(exchange,tokens,account,dispatch)
     },[exchange,tokens,account])
 

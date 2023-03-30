@@ -30,7 +30,7 @@ function App() {
     } )
 
     //Fetch current account  & balance fro metamask
-    // await loadAccount(dispatch ,provider)
+    await loadAccount(dispatch ,provider)
 
     //Load Token smart Contract
     const Dapp = config[chainId].Dapp.address
