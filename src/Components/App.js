@@ -18,6 +18,11 @@ function App() {
     //Fetch current network's chainId ( e.g. hardhat :31337 ,kovan: 42)  
     const chainId  = await loadNetwork(provider,dispatch);
 
+
+      //Load exchange contract
+      const exchangeConfig = config[chainId].exchange.address
+      await loadExchange(provider,exchangeConfig,dispatch)
+
     //Reload page when chain changed
 
     window.ethereum.on('chainChanged' ,() => {
@@ -37,9 +42,7 @@ function App() {
     const mETH =config[chainId].mETH.address
     await loadTokens(provider,[Dapp,mETH],dispatch);
 
-   //Load exchange contract
-    const exchangeConfig = config[chainId].exchange.address
-    await loadExchange(provider,exchangeConfig,dispatch)
+ 
 
   }
 

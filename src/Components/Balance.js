@@ -36,6 +36,7 @@ const Balance = () => {
 
     useEffect(()=>{
       if(exchange && tokens[0] && tokens[1]&& account)
+      console.log(exchange,"exchange")
       loadBalances(exchange,tokens,account,dispatch)
     },[exchange,tokens,account])
 
