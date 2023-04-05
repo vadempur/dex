@@ -8,6 +8,7 @@ const Markets = () => {
     const dispatch = useDispatch()
 
     const marketHandler = async (e) => {
+      console.log((e.target.value).split(","))
         loadTokens(provider,(e.target.value).split(","),dispatch)
     }
 
@@ -20,17 +21,14 @@ const Markets = () => {
         {chainId && config[chainId] ? (
           <select className="markets" id="markets" onChange={marketHandler}>
             <option
-              value={`${
-                (config[chainId].Dapp.address, config[chainId].mETH.address)
+              value={`${config[chainId].Dapp.address},${config[chainId].mETH.address
               }`}
             >
               {" "}
               Dapp/mETH
             </option>
             <option
-              value={`${
-                (config[chainId].Dapp.address, config[chainId].mDAI.address)
-              }`}
+              value={`${ config[chainId].Dapp.address},${config[chainId].mDAI.address}`}
             >
               {" "}
               Dapp/mDAI
