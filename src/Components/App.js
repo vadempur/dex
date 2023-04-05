@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import '../App.css';
 import Navbar from './Navbar';
 import config from "../config.json"
-import { loadAccount, loadExchange, loadNetwork, loadProvider, loadTokens } from '../store/interactions'
+import { loadAccount, loadExchange, loadNetwork, loadProvider, loadTokens ,subscribeToEvents} from '../store/interactions'
 import Markets from './Markets';
 import Balance from './Balance';
 
@@ -19,9 +19,7 @@ function App() {
     const chainId  = await loadNetwork(provider,dispatch);
 
 
-      //Load exchange contract
-      const exchangeConfig = config[chainId].exchange.address
-      await loadExchange(provider,exchangeConfig,dispatch)
+
 
     //Reload page when chain changed
 
@@ -42,7 +40,12 @@ function App() {
     const mETH =config[chainId].mETH.address
     await loadTokens(provider,[Dapp,mETH],dispatch);
 
- 
+    //Load exchange contract
+    const exchangeConfig = config[chainId].exchange
+    const exchange = await loadExchange(provider,exchangeConfig.address,dispatch)
+
+    //listen to events 
+    subscribeToEvents(exchange,dispatch)
 
   }
 
